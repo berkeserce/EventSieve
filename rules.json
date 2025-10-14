@@ -1,0 +1,52 @@
+[
+    {
+        "pattern": "Failed password|Authentication failure|Invalid user",
+        "description": "Failed login attempt",
+        "severity": "medium"
+    },
+    {
+        "pattern": "Accepted password|Successful login",
+        "description": "Successful login",
+        "severity": "low"
+    },
+    {
+        "pattern": "sshd.*Invalid user|sshd.*Failed password",
+        "description": "SSH failed login attempt",
+        "severity": "high"
+    },
+    {
+        "pattern": "root.*login|sudo.*command",
+        "description": "Root or sudo usage",
+        "severity": "medium"
+    },
+    {
+        "pattern": "error|Error|ERROR",
+        "description": "General error message",
+        "severity": "low"
+    },
+    {
+        "pattern": "\\b(\\d{1,3}\\.){3}\\d{1,3}\\b.*multiple.*attempts?",
+        "description": "Multiple login attempts",
+        "severity": "high"
+    },
+    {
+        "pattern": "brute.*force|Brute.*force",
+        "description": "Brute force attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "connection.*refused|Connection.*refused",
+        "description": "Connection refused",
+        "severity": "medium"
+    },
+    {
+        "pattern": "unauthorized|Unauthorized|UNAUTHORIZED",
+        "description": "Unauthorized access",
+        "severity": "high"
+    },
+    {
+        "pattern": "malware|Malware|virus|Virus",
+        "description": "Malware detection",
+        "severity": "critical"
+    }
+]

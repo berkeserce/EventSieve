@@ -1,0 +1,22 @@
+Oct 13 10:15:01 server sshd[1234]: Failed password for invalid user admin from 192.168.1.100 port 22 ssh2
+Oct 13 10:15:02 server sshd[1234]: Failed password for root from 192.168.1.100 port 22 ssh2
+Oct 13 10:15:03 server sshd[1234]: Accepted password for user1 from 192.168.1.50 port 22 ssh2
+Oct 13 10:15:04 server sudo: user1 : TTY=pts/0 ; PWD=/home/user1 ; USER=root ; COMMAND=/bin/ls
+Oct 13 10:15:05 server kernel: [12345.678901] device eth0 entered promiscuous mode
+Oct 13 10:15:06 server sshd[1235]: Failed password for invalid user test from 10.0.0.1 port 22 ssh2
+Oct 13 10:15:07 server sshd[1235]: Failed password for invalid user hacker from 10.0.0.1 port 22 ssh2
+Oct 13 10:15:08 server sshd[1235]: Failed password for invalid user admin from 10.0.0.1 port 22 ssh2
+Oct 13 10:15:09 server sshd[1235]: Connection closed by 10.0.0.1 [preauth]
+Oct 13 10:15:10 server auth.log: Authentication failure for user root from 192.168.1.100
+Oct 13 10:15:11 server kernel: [12346.789012] iptables denied: IN=eth0 OUT= MAC=... SRC=192.168.1.100 DST=192.168.1.1 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=12345 DF PROTO=TCP SPT=44567 DPT=22 WINDOW=29200 RES=0x00 SYN URGP=0
+Oct 13 10:15:12 server syslog: error: unable to resolve hostname
+Oct 13 10:15:13 server sshd[1236]: Accepted password for user2 from 192.168.1.75 port 22 ssh2
+Oct 13 10:15:14 server sudo: user2 : TTY=pts/1 ; PWD=/home/user2 ; USER=root ; COMMAND=/bin/cat /etc/shadow
+Oct 13 10:15:15 server auth.log: Successful login for user admin from localhost
+Oct 13 10:15:16 server kernel: [12347.890123] suspicious activity detected from IP 10.0.0.1 - multiple failed attempts
+Oct 13 10:15:17 server antivirus: Malware detected in /tmp/suspicious.exe
+Oct 13 10:15:18 server firewall: Unauthorized access attempt from 203.0.113.1
+Oct 13 10:15:19 server sshd[1237]: Brute force attack detected from 198.51.100.1
+Oct 13 10:15:20 server syslog: Connection refused from unknown IP 203.0.113.195Oct 14 23:30:01 server sshd[9999]: Failed password for invalid user attacker from 192.168.1.200 port 22 ssh2
+Oct 14 23:35:01 server sshd[10000]: Failed password for invalid user new_attacker from 10.0.0.50 port 22 ssh2
+Oct 14 23:41:01 server sshd[10000]: Failed password for invalid user new_attacker from 10.0.0.51 port 22 ssh2
