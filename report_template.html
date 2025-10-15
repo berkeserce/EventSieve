@@ -78,14 +78,12 @@
         @media (max-width: 1024px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
             }
         }
 
         @media (max-width: 640px) {
             .stats-grid {
                 grid-template-columns: 1fr;
-                gap: 12px;
             }
         }
 
@@ -93,7 +91,7 @@
             background: #111111;
             border: 1px solid #222222;
             border-radius: 12px;
-            padding: 28px 20px;
+            padding: 32px 24px;
             text-align: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -123,19 +121,21 @@
         }
 
         .stat-number {
-            font-size: 2.5em;
+            font-size: 3em;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-variant-numeric: tabular-nums;
         }
 
         .stat-label {
-            font-size: 0.9em;
+            font-size: 0.85em;
             color: #888888;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            line-height: 1.2;
+            word-break: break-word;
         }
 
         .severity-chart {
@@ -218,45 +218,6 @@
             font-weight: 600;
             letter-spacing: -0.02em;
         }
-
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 32px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            border: 1px solid #333333;
-            border-radius: 6px;
-            background: #111111;
-            color: #888888;
-            font-size: 0.85em;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .filter-btn:hover {
-            border-color: #555555;
-            color: #cccccc;
-        }
-
-        .filter-btn.active {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-        }
-
-        .filter-btn.all { background: #333333; color: #ffffff; }
-        .filter-btn.low { background: #10b981; color: #ffffff; }
-        .filter-btn.medium { background: #f59e0b; color: #ffffff; }
-        .filter-btn.high { background: #ef4444; color: #ffffff; }
-        .filter-btn.critical { background: #8b5cf6; color: #ffffff; }
 
         .activity-card {
             background: #111111;
@@ -391,15 +352,6 @@
             .section-title {
                 font-size: 1.5em;
             }
-
-            .filter-buttons {
-                gap: 8px;
-            }
-
-            .filter-btn {
-                padding: 6px 12px;
-                font-size: 0.8em;
-            }
         }
 
         /* Smooth scrolling and modern scrollbar */
@@ -440,7 +392,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-number">{{ critical_count }}</div>
-                <div class="stat-label">Critical Threats</div>
+                <div class="stat-label">Critical</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">{{ high_count }}</div>
@@ -448,7 +400,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-number">{{ medium_count }}</div>
-                <div class="stat-label">Medium Risk</div>
+                <div class="stat-label">Medium</div>
             </div>
         </section>
 
@@ -476,16 +428,9 @@
 
         <section class="activities-section">
             <h2 class="section-title">Detected Security Events</h2>
-            <div class="filter-buttons">
-                <button class="filter-btn all active" data-filter="all">All Events</button>
-                <button class="filter-btn critical" data-filter="critical">Critical</button>
-                <button class="filter-btn high" data-filter="high">High</button>
-                <button class="filter-btn medium" data-filter="medium">Medium</button>
-                <button class="filter-btn low" data-filter="low">Low</button>
-            </div>
             {% if activities %}
                 {% for activity in activities %}
-                <div class="activity-card" data-severity="{{ activity.severity }}">
+                <div class="activity-card">
                     <div class="activity-header">
                         <span class="activity-line">Line {{ activity.line_number }}</span>
                         <span class="activity-severity severity-{{ activity.severity }}">{{ activity.severity }}</span>
@@ -537,36 +482,6 @@
                 });
                 card.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0)';
-                });
-            });
-
-            // Filter functionality
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const activityCardsArray = Array.from(activityCards);
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const filterValue = this.getAttribute('data-filter');
-
-                    // Update active button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-
-                    // Filter cards
-                    activityCardsArray.forEach(card => {
-                        const cardSeverity = card.getAttribute('data-severity');
-                        if (filterValue === 'all' || cardSeverity === filterValue) {
-                            card.style.display = 'block';
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'scale(0.95)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300);
-                        }
-                    });
                 });
             });
         });
