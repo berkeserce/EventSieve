@@ -31,18 +31,18 @@ def show_banner():
 
 def show_menu():
     """Show main menu."""
-    print(f"\n{Fore.CYAN}╔══════════════════════════════════════════════════════════╗{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.YELLOW}MAIN MENU{Style.RESET_ALL}                                                  {Fore.CYAN}║{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}╠══════════════════════════════════════════════════════════╣{Style.RESET_ALL}")
+    print(f"\n{Fore.CYAN}╔═══════════════════════════════════════════════════════════╗{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.YELLOW}MAIN MENU{Style.RESET_ALL}                                                 {Fore.CYAN}║{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}╠═══════════════════════════════════════════════════════════╣{Style.RESET_ALL}")
     print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.GREEN}[1]{Style.RESET_ALL} Select Log File                                       {Fore.CYAN}║{Style.RESET_ALL}")
     print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.GREEN}[2]{Style.RESET_ALL} Select Rules File                                     {Fore.CYAN}║{Style.RESET_ALL}")
     print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.GREEN}[3]{Style.RESET_ALL} Start Analysis                                        {Fore.CYAN}║{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.GREEN}[4]{Style.RESET_ALL} Set TXT Report File                                 {Fore.CYAN}║{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.GREEN}[5]{Style.RESET_ALL} Generate HTML Report                                 {Fore.CYAN}║{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.GREEN}[6]{Style.RESET_ALL} Start Real-time Monitoring                          {Fore.CYAN}║{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.GREEN}[4]{Style.RESET_ALL} Set TXT Report File                                   {Fore.CYAN}║{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.GREEN}[5]{Style.RESET_ALL} Generate HTML Report                                  {Fore.CYAN}║{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.GREEN}[6]{Style.RESET_ALL} Start Real-time Monitoring                            {Fore.CYAN}║{Style.RESET_ALL}")
     print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.GREEN}[7]{Style.RESET_ALL} Current Settings                                      {Fore.CYAN}║{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.RED}[0]{Style.RESET_ALL} Exit                                                   {Fore.CYAN}║{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}╚══════════════════════════════════════════════════════════╝{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}║{Style.RESET_ALL} {Fore.RED}[0]{Style.RESET_ALL} Exit                                                  {Fore.CYAN}║{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}╚═══════════════════════════════════════════════════════════╝{Style.RESET_ALL}")
     print()
 
 
