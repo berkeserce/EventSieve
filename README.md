@@ -16,7 +16,11 @@ EventSieve is a log analysis tool developed for cybersecurity professionals. It 
 Python 3.6+ is required.
 
 ```bash
-# No external dependencies required, only Python standard libraries are used
+# Install required dependencies
+pip install colorama jinja2
+
+# Or using requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Usage
@@ -134,12 +138,71 @@ python main.py -l /var/log/auth.log -r rules.json --watch --interval 0.5 --html-
 - **Configurable Intervals**: Adjust check frequency (default: 1 second)
 - **Memory Efficient**: Prevents memory leaks with activity history limits
 
-## Security Notes
+## Interactive Mode Features
 
-- This tool only performs log analysis, it does not take active security measures
-- Check file permissions when working with sensitive log files
-- Test the performance of regex patterns (especially with large log files)
+EventSieve offers a user-friendly interactive menu with the following features:
 
-## License
+### System Log Discovery
+- **Automatic Log Detection**: Scans common system log locations
+- **Smart Categorization**: Identifies log types (auth, system, web, database, etc.)
+- **Permission Checking**: Shows readable files only
+- **Multiple Selection**: Choose from found logs or enter custom paths
 
-This project is open source and published under the MIT license.
+### Supported Log Types
+- **Authentication Logs**: `/var/log/auth.log`, `/var/log/secure`
+- **System Logs**: `/var/log/syslog`, `/var/log/messages`
+- **Web Server Logs**: Apache, Nginx access/error logs
+- **Database Logs**: MySQL, PostgreSQL logs
+- **Mail Logs**: Sendmail, Postfix logs
+- **Kernel Logs**: `/var/log/kern.log`, `/var/log/dmesg`
+
+## Testing
+
+To test the project:
+
+```bash
+# Basic test with sample log
+python -m src.main -l sample.log -r rules.json
+
+# Test with TXT report
+python -m src.main -l sample.log -r rules.json -o test_report.txt
+
+# Test with HTML report (Modern black-green theme)
+python -m src.main -l sample.log -r rules.json --html-output security_report.html
+
+# Both TXT and HTML reports
+python -m src.main -l sample.log -r rules.json -o report.txt --html-output report.html
+
+# Test with real system logs (requires appropriate permissions)
+python -m src.main -l /var/log/auth.log -r rules.json -o auth_analysis.txt --html-output auth_analysis.html
+
+# Interactive mode with system log discovery
+python -m src.main
+```
+
+These commands analyze the sample log file and write the results to console, TXT file, and/or HTML file.
+
+## Project Status
+
+### ✅ Completed Features
+- **Modular Architecture**: Clean separation of concerns with `src/` directory structure
+- **Rule-Based Analysis**: JSON configuration with regex patterns and severity levels
+- **Multiple Report Formats**: TXT console output and professional HTML reports
+- **Real-time Monitoring**: Continuous log file watching with configurable intervals
+- **Interactive Mode**: User-friendly menu system with colored terminal interface
+- **System Log Discovery**: Automatic scanning and categorization of system log files
+- **Cross-Platform Support**: Works on Linux, macOS, and Windows
+
+### 🔄 Current Capabilities
+- Analyzes authentication logs, system logs, web server logs, and custom formats
+- Supports 10+ predefined security rules with customizable severity levels
+- Generates responsive HTML reports with statistics and visualizations
+- Handles large log files efficiently with line-by-line processing
+- Real-time monitoring with instant alerts for new suspicious activities
+
+### 🚀 Future Enhancements
+- Database integration for historical analysis
+- REST API for remote monitoring
+- Webhook notifications for critical alerts
+- Advanced pattern matching with machine learning
+- Multi-language support for international deployments

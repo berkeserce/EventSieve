@@ -59,7 +59,14 @@ def main():
         activities = analyze_log(str(log_path), rules)
 
         # Generate reports
-        generate_report(activities, args.output)
+        output_file = args.output
+        if not output_file:
+            # Auto-generate filename based on log file
+            log_name = log_path.stem
+            output_file = f"{log_name}_analysis.txt"
+            print(f"No TXT output file specified, saving to: {output_file}")
+
+        generate_report(activities, output_file)
 
         if args.html_output:
             generate_html_report(activities, args.html_output, str(log_path), str(rules_path))

@@ -12,81 +12,90 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
-            color: #e8e8e8;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            color: #ffffff;
             min-height: 100vh;
             line-height: 1.6;
+            font-size: 14px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             position: relative;
+            padding-bottom: 30px;
         }
 
-        .header::before {
+        .header::after {
             content: '';
             position: absolute;
-            top: -10px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100%;
+            width: 80px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #00ff41, transparent);
-            animation: glow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { box-shadow: 0 0 3px #00ff41; }
-            to { box-shadow: 0 0 8px #00ff41; }
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
         }
 
         .logo {
-            font-size: 2.8em;
-            font-weight: bold;
-            text-shadow: 0 0 8px #00ff41;
-            margin-bottom: 10px;
-            animation: flicker 4s ease-in-out infinite;
-            color: #00ff41;
-        }
-
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
+            font-size: 3.2em;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .subtitle {
             font-size: 1.1em;
-            color: #b0b0b0;
-            margin-bottom: 20px;
+            color: #888888;
+            margin-bottom: 16px;
+            font-weight: 400;
         }
 
         .timestamp {
-            color: #888;
+            color: #666666;
             font-size: 0.9em;
+            font-weight: 500;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
         }
 
         .stat-card {
-            background: rgba(0, 255, 65, 0.05);
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 20px;
+            background: #111111;
+            border: 1px solid #222222;
+            border-radius: 12px;
+            padding: 28px 20px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
@@ -95,258 +104,332 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
-            transition: left 0.5s;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ffffff 0%, transparent 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         .stat-card:hover::before {
-            left: 100%;
+            transform: scaleX(1);
         }
 
         .stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 255, 65, 0.15);
-            border-color: #00ff41;
+            transform: translateY(-4px);
+            border-color: #333333;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .stat-number {
-            font-size: 2.2em;
-            font-weight: bold;
-            color: #00d4ff;
-            text-shadow: 0 0 5px #00d4ff;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+            font-variant-numeric: tabular-nums;
         }
 
         .stat-label {
-            font-size: 1em;
-            color: #b0b0b0;
-            margin-top: 8px;
+            font-size: 0.9em;
+            color: #888888;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .severity-chart {
-            background: rgba(0, 255, 65, 0.03);
-            border: 1px solid #333;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
+            background: #111111;
+            border: 1px solid #222222;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 60px;
         }
 
         .severity-title {
             text-align: center;
-            font-size: 1.4em;
-            margin-bottom: 20px;
-            color: #00ff41;
+            font-size: 1.5em;
+            margin-bottom: 32px;
+            color: #ffffff;
+            font-weight: 600;
         }
 
         .severity-bars {
             display: flex;
             justify-content: space-around;
             align-items: end;
-            height: 200px;
-            gap: 10px;
+            height: 240px;
+            gap: 16px;
         }
 
         .severity-bar {
             flex: 1;
-            background: #333;
-            border-radius: 5px 5px 0 0;
+            background: #333333;
+            border-radius: 8px 8px 0 0;
             position: relative;
-            min-height: 20px;
-            transition: all 0.3s ease;
+            min-height: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            border: 1px solid #444444;
         }
 
         .severity-bar:hover {
-            opacity: 0.8;
+            transform: scaleY(1.05);
+            filter: brightness(1.1);
         }
 
-        .severity-bar.low { background: #22c55e; }
-        .severity-bar.medium { background: #84cc16; }
-        .severity-bar.high { background: #eab308; }
-        .severity-bar.critical { background: #ef4444; }
+        .severity-bar.low { background: linear-gradient(180deg, #10b981 0%, #059669 100%); }
+        .severity-bar.medium { background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%); }
+        .severity-bar.high { background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%); }
+        .severity-bar.critical { background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%); }
 
         .severity-label {
             position: absolute;
-            bottom: -25px;
+            bottom: -32px;
             left: 50%;
             transform: translateX(-50%);
-            color: #b0b0b0;
-            font-size: 0.8em;
+            color: #888888;
+            font-size: 0.85em;
+            font-weight: 500;
             white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .severity-count {
             position: absolute;
-            top: -25px;
+            top: -28px;
             left: 50%;
             transform: translateX(-50%);
-            color: #e8e8e8;
-            font-weight: bold;
+            color: #ffffff;
+            font-weight: 600;
             font-size: 0.9em;
         }
 
         .activities-section {
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .section-title {
-            font-size: 1.6em;
-            color: #00d4ff;
-            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #ffffff;
+            margin-bottom: 32px;
             text-align: center;
-            text-shadow: 0 0 5px #00d4ff;
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #333333;
+            border-radius: 6px;
+            background: #111111;
+            color: #888888;
+            font-size: 0.85em;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .filter-btn:hover {
+            border-color: #555555;
+            color: #cccccc;
+        }
+
+        .filter-btn.active {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        .filter-btn.all { background: #333333; color: #ffffff; }
+        .filter-btn.low { background: #10b981; color: #ffffff; }
+        .filter-btn.medium { background: #f59e0b; color: #ffffff; }
+        .filter-btn.high { background: #ef4444; color: #ffffff; }
+        .filter-btn.critical { background: #8b5cf6; color: #ffffff; }
+
         .activity-card {
-            background: rgba(0, 255, 65, 0.03);
-            border: 1px solid #333;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            padding: 18px;
-            transition: all 0.3s ease;
+            background: #111111;
+            border: 1px solid #222222;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            padding: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .activity-card:hover {
-            border-color: #00ff41;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+            border-color: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
         }
 
         .activity-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 16px;
         }
 
         .activity-line {
-            color: #00ff41;
-            font-weight: bold;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.1em;
         }
 
         .activity-severity {
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8em;
-            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75em;
+            font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .severity-low { background: #4ade80; color: #000; }
-        .severity-medium { background: #fbbf24; color: #000; }
-        .severity-high { background: #f87171; color: #fff; }
-        .severity-critical { background: #fb7185; color: #fff; }
+        .severity-low { background: #10b981; color: #ffffff; }
+        .severity-medium { background: #f59e0b; color: #ffffff; }
+        .severity-high { background: #ef4444; color: #ffffff; }
+        .severity-critical { background: #8b5cf6; color: #ffffff; }
 
         .activity-rule {
-            color: #b0b0b0;
-            margin-bottom: 10px;
+            color: #cccccc;
+            margin-bottom: 16px;
+            font-weight: 500;
         }
 
         .activity-content {
-            background: rgba(0, 0, 0, 0.3);
-            border-left: 3px solid #00ff41;
-            padding: 10px;
-            font-family: 'Courier New', monospace;
-            color: #e8e8e8;
-            margin-bottom: 10px;
+            background: #0a0a0a;
+            border-left: 3px solid #ffffff;
+            padding: 16px;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            color: #ffffff;
+            margin-bottom: 16px;
             word-wrap: break-word;
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
         .activity-pattern {
-            color: #888;
-            font-size: 0.9em;
+            color: #666666;
+            font-size: 0.85em;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .no-activities {
             text-align: center;
-            color: #00ff41;
+            color: #888888;
             font-size: 1.2em;
-            padding: 40px;
+            padding: 60px 20px;
+            background: #111111;
+            border: 1px solid #222222;
+            border-radius: 12px;
         }
 
         .footer {
             text-align: center;
-            margin-top: 40px;
-            color: #666;
+            margin-top: 60px;
+            color: #666666;
             font-size: 0.9em;
-        }
-
-        .footer::before {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #333, transparent);
-            margin-bottom: 20px;
+            padding-top: 40px;
+            border-top: 1px solid #222222;
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+
             .logo {
-                font-size: 2em;
+                font-size: 2.4em;
             }
 
             .stats-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .stat-card {
+                padding: 24px 20px;
+            }
+
+            .stat-number {
+                font-size: 2.5em;
             }
 
             .severity-bars {
                 flex-direction: column;
                 height: auto;
-                gap: 15px;
+                gap: 20px;
             }
 
             .severity-bar {
-                min-height: 40px;
+                min-height: 48px;
             }
 
             .severity-label {
                 position: static;
                 transform: none;
-                margin-top: 5px;
+                margin-top: 8px;
             }
 
             .severity-count {
                 position: static;
                 transform: none;
-                margin-bottom: 5px;
+                margin-bottom: 8px;
+            }
+
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .filter-buttons {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 0.8em;
             }
         }
 
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.03;
+        /* Smooth scrolling and modern scrollbar */
+        html {
+            scroll-behavior: smooth;
         }
 
-        .matrix-bg::before {
-            content: '0101001001010010010100100101001001010010';
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
-            color: #00ff41;
-            animation: matrix-fall 15s linear infinite;
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        @keyframes matrix-fall {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(100vh); }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555555;
         }
     </style>
 </head>
 <body>
-    <div class="matrix-bg"></div>
     <div class="container">
         <header class="header">
             <div class="logo">EVENTSIEVE</div>
-            <div class="subtitle">Rule-Based Log Analysis Tool</div>
+            <div class="subtitle">Advanced Log Analysis & Security Intelligence</div>
             <div class="timestamp">Report Generated: {{ timestamp }}</div>
         </header>
 
@@ -392,10 +475,17 @@
         </section>
 
         <section class="activities-section">
-            <h2 class="section-title">Suspicious Activities</h2>
+            <h2 class="section-title">Detected Security Events</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn all active" data-filter="all">All Events</button>
+                <button class="filter-btn critical" data-filter="critical">Critical</button>
+                <button class="filter-btn high" data-filter="high">High</button>
+                <button class="filter-btn medium" data-filter="medium">Medium</button>
+                <button class="filter-btn low" data-filter="low">Low</button>
+            </div>
             {% if activities %}
                 {% for activity in activities %}
-                <div class="activity-card">
+                <div class="activity-card" data-severity="{{ activity.severity }}">
                     <div class="activity-header">
                         <span class="activity-line">Line {{ activity.line_number }}</span>
                         <span class="activity-severity severity-{{ activity.severity }}">{{ activity.severity }}</span>
@@ -407,15 +497,14 @@
                 {% endfor %}
             {% else %}
                 <div class="no-activities">
-                    🎉 No suspicious activities found! System appears secure.
+                    ✅ No suspicious activities detected. System security status: Clear.
                 </div>
             {% endif %}
         </section>
 
         <footer class="footer">
-            <p>This report was generated by EventSieve v1.0.</p>
-            <p>Log File: {{ log_file }}</p>
-            <p>Rules File: {{ rules_file }}</p>
+            <p>Generated by EventSieve Security Analysis Platform</p>
+            <p>Source: {{ log_file }} | Rules: {{ rules_file }}</p>
         </footer>
     </div>
 
@@ -426,27 +515,82 @@
             const bars = document.querySelectorAll('.severity-bar');
             bars.forEach(bar => {
                 const height = bar.getAttribute('data-height') || '10';
-                bar.style.height = height + '%';
+                bar.style.height = Math.max(parseFloat(height), 8) + '%'; // Minimum height
             });
 
-            // Severity bar'lara hover efekti
-            bars.forEach(bar => {
-                bar.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scaleY(1.05)';
+            // Smooth hover effects
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px)';
                 });
-                bar.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scaleY(1)';
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
                 });
             });
 
-            // Activity card'lara click efekti
-            const cards = document.querySelectorAll('.activity-card');
-            cards.forEach(card => {
-                card.addEventListener('click', function() {
-                    this.style.transform = this.style.transform === 'scale(1.02)' ? 'scale(1)' : 'scale(1.02)';
+            // Activity cards interaction
+            const activityCards = document.querySelectorAll('.activity-card');
+            activityCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const activityCardsArray = Array.from(activityCards);
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Filter cards
+                    activityCardsArray.forEach(card => {
+                        const cardSeverity = card.getAttribute('data-severity');
+                        if (filterValue === 'all' || cardSeverity === filterValue) {
+                            card.style.display = 'block';
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
                 });
             });
         });
+
+        // Performance optimization: Lazy load severity bars
+        let severityBarsLoaded = false;
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '50px'
+        };
+
+        const severityObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !severityBarsLoaded) {
+                    severityBarsLoaded = true;
+                    // Bars are already loaded in DOMContentLoaded
+                }
+            });
+        }, observerOptions);
+
+        const severityChart = document.querySelector('.severity-chart');
+        if (severityChart) {
+            severityObserver.observe(severityChart);
+        }
     </script>
 </body>
 </html>

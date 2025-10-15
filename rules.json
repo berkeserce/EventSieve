@@ -1,52 +1,1312 @@
 [
     {
-        "pattern": "Failed password|Authentication failure|Invalid user",
+        "pattern": "Failed password|Authentication failure|Invalid user|Login incorrect|User not known|Permission denied",
         "description": "Failed login attempt",
         "severity": "medium"
     },
     {
-        "pattern": "Accepted password|Successful login",
+        "pattern": "Accepted password|Successful login|session opened|Login successful|Authentication successful",
         "description": "Successful login",
         "severity": "low"
     },
     {
-        "pattern": "sshd.*Invalid user|sshd.*Failed password",
-        "description": "SSH failed login attempt",
+        "pattern": "sshd.*Invalid user|sshd.*Failed password|sshd.*authentication failure|ssh.*denied",
+        "description": "SSH authentication failure",
         "severity": "high"
     },
     {
-        "pattern": "root.*login|sudo.*command",
+        "pattern": "root.*login|sudo.*command|su.*command|sudoers|wheel.*group",
         "description": "Root or sudo usage",
         "severity": "medium"
     },
     {
-        "pattern": "error|Error|ERROR",
+        "pattern": "error|Error|ERROR|failed|Failed|FAILED|denied|Denied|DENIED",
         "description": "General error message",
         "severity": "low"
     },
     {
-        "pattern": "\\b(\\d{1,3}\\.){3}\\d{1,3}\\b.*multiple.*attempts?",
-        "description": "Multiple login attempts",
-        "severity": "high"
-    },
-    {
-        "pattern": "brute.*force|Brute.*force",
-        "description": "Brute force attack",
+        "pattern": "multiple.*attempts?|brute.*force|Brute.*force|dictionary.*attack|password.*spray",
+        "description": "Brute force attack indicators",
         "severity": "critical"
     },
     {
-        "pattern": "connection.*refused|Connection.*refused",
-        "description": "Connection refused",
+        "pattern": "connection.*refused|Connection.*refused|connection.*reset|Connection.*reset",
+        "description": "Connection refused/reset",
         "severity": "medium"
     },
     {
-        "pattern": "unauthorized|Unauthorized|UNAUTHORIZED",
-        "description": "Unauthorized access",
+        "pattern": "unauthorized|Unauthorized|UNAUTHORIZED|forbidden|Forbidden|FORBIDDEN|access.*denied",
+        "description": "Unauthorized access attempt",
         "severity": "high"
     },
     {
-        "pattern": "malware|Malware|virus|Virus",
+        "pattern": "malware|Malware|virus|Virus|ransomware|Ransomware|trojan|Trojan|worm|Worm",
         "description": "Malware detection",
+        "severity": "critical"
+    },
+    {
+        "pattern": "kernel.*panic|Kernel.*panic|system.*crash|System.*crash|kernel.*oops",
+        "description": "System crash or kernel panic",
+        "severity": "high"
+    },
+    {
+        "pattern": "segfault|segmentation.*fault|Segmentation.*fault|core.*dump|Core.*dump",
+        "description": "Application crash",
+        "severity": "medium"
+    },
+    {
+        "pattern": "out of memory|Out of memory|OOM|memory.*exhausted|Memory.*exhausted",
+        "description": "Memory exhaustion",
+        "severity": "high"
+    },
+    {
+        "pattern": "disk.*full|Disk.*full|no space|No space|filesystem.*full",
+        "description": "Disk space exhaustion",
+        "severity": "high"
+    },
+    {
+        "pattern": "SQL.*injection|sql.*injection|SQLi|sqli|union.*select|UNION.*SELECT",
+        "description": "SQL injection attempt",
+        "severity": "critical"
+    },
+    {
+        "pattern": "XSS|Cross.*site.*scripting|xss|script.*alert|javascript.*alert|<script>",
+        "description": "Cross-site scripting attempt",
+        "severity": "high"
+    },
+    {
+        "pattern": "\\.\\./|\\.\\./directory.*traversal|path.*traversal|../etc/passwd|../etc/shadow",
+        "description": "Directory traversal attempt",
+        "severity": "critical"
+    },
+    {
+        "pattern": "nmap|Nmap|masscan|Masscan|port.*scan|Port.*scan|scanner|Scanner",
+        "description": "Port scanning activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "exploit|Exploit|vulnerability|Vulnerability|CVE|cve|0day|zero.*day",
+        "description": "Exploit attempt",
+        "severity": "critical"
+    },
+    {
+        "pattern": "backdoor|Backdoor|reverse.*shell|Reverse.*shell|netcat|Netcat|nc.*-e",
+        "description": "Backdoor activity",
+        "severity": "critical"
+    },
+    {
+        "pattern": "cryptocurrency|Cryptocurrency|bitcoin|Bitcoin|mining|Mining|monero|Monero",
+        "description": "Cryptocurrency mining",
+        "severity": "high"
+    },
+    {
+        "pattern": "ransomware|Ransomware|encrypt.*files|Encrypt.*files|file.*encrypted",
+        "description": "Ransomware activity",
+        "severity": "critical"
+    },
+    {
+        "pattern": "phishing|Phishing|phish|Phish|spear.*phishing|Spear.*phishing",
+        "description": "Phishing activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "DDoS|ddos|distributed.*denial|Distributed.*denial|botnet|Botnet",
+        "description": "DDoS attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "privilege.*escalation|Privilege.*escalation|suid|SUID|sgid|SGID",
+        "description": "Privilege escalation",
+        "severity": "critical"
+    },
+    {
+        "pattern": "buffer.*overflow|Buffer.*overflow|heap.*overflow|stack.*overflow",
+        "description": "Buffer overflow exploit",
+        "severity": "critical"
+    },
+    {
+        "pattern": "command.*injection|Command.*injection|shell.*injection|Shell.*injection",
+        "description": "Command injection",
+        "severity": "critical"
+    },
+    {
+        "pattern": "LDAP.*injection|ldap.*injection|XML.*injection|xml.*injection",
+        "description": "Injection attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "session.*hijacking|Session.*hijacking|cookie.*theft|Cookie.*theft",
+        "description": "Session hijacking",
+        "severity": "high"
+    },
+    {
+        "pattern": "man.*in.*the.*middle|Man.*in.*the.*middle|MITM|mitm",
+        "description": "Man-in-the-middle attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "zero.*day|Zero.*day|unknown.*exploit|Unknown.*exploit",
+        "description": "Zero-day exploit",
+        "severity": "critical"
+    },
+    {
+        "pattern": "rootkit|Rootkit|kernel.*module|Kernel.*module|lsmod|LKM",
+        "description": "Rootkit activity",
+        "severity": "critical"
+    },
+    {
+        "pattern": "keylogger|Keylogger|keyboard.*capture|Keyboard.*capture",
+        "description": "Keylogger activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "spyware|Spyware|adware|Adware|tracking|Tracking",
+        "description": "Spyware/Adware",
+        "severity": "medium"
+    },
+    {
+        "pattern": "data.*breach|Data.*breach|information.*leak|Information.*leak",
+        "description": "Data breach indicators",
+        "severity": "critical"
+    },
+    {
+        "pattern": "insider.*threat|Insider.*threat|internal.*attack|Internal.*attack",
+        "description": "Insider threat",
+        "severity": "high"
+    },
+    {
+        "pattern": "social.*engineering|Social.*engineering|pretexting|Pretexting",
+        "description": "Social engineering",
+        "severity": "medium"
+    },
+    {
+        "pattern": "physical.*access|Physical.*access|unauthorized.*entry|Unauthorized.*entry",
+        "description": "Physical security breach",
+        "severity": "high"
+    },
+    {
+        "pattern": "configuration.*change|Configuration.*change|config.*modified|Config.*modified",
+        "description": "Configuration change",
+        "severity": "medium"
+    },
+    {
+        "pattern": "user.*account.*created|User.*account.*created|new.*user|New.*user",
+        "description": "New user account creation",
+        "severity": "low"
+    },
+    {
+        "pattern": "user.*account.*deleted|User.*account.*deleted|user.*removed|User.*removed",
+        "description": "User account deletion",
+        "severity": "medium"
+    },
+    {
+        "pattern": "password.*changed|Password.*changed|passwd|Passwd",
+        "description": "Password change",
+        "severity": "low"
+    },
+    {
+        "pattern": "group.*membership.*changed|Group.*membership.*changed|groupadd|groupdel",
+        "description": "Group membership change",
+        "severity": "medium"
+    },
+    {
+        "pattern": "file.*permission.*changed|File.*permission.*changed|chmod|Chmod",
+        "description": "File permission change",
+        "severity": "medium"
+    },
+    {
+        "pattern": "system.*update|System.*update|package.*installed|Package.*installed",
+        "description": "System update/package installation",
+        "severity": "low"
+    },
+    {
+        "pattern": "service.*failed|Service.*failed|daemon.*crashed|Daemon.*crashed",
+        "description": "Service failure",
+        "severity": "medium"
+    },
+    {
+        "pattern": "network.*interface.*down|Network.*interface.*down|NIC.*down|nic.*down",
+        "description": "Network interface failure",
+        "severity": "high"
+    },
+    {
+        "pattern": "firewall.*block|Firewall.*block|iptables.*drop|IPTables.*drop",
+        "description": "Firewall block",
+        "severity": "medium"
+    },
+    {
+        "pattern": "intrusion.*detection|Intrusion.*detection|IDS|ids|snort|Snort",
+        "description": "Intrusion detection alert",
+        "severity": "high"
+    },
+    {
+        "pattern": "honeypot|Honeypot|decoy|Decoy|trap|Trap",
+        "description": "Honeypot activity",
+        "severity": "medium"
+    },
+    {
+        "pattern": "anomaly|Anomaly|unusual.*activity|Unusual.*activity|abnormal|Abnormal",
+        "description": "Anomalous activity",
+        "severity": "medium"
+    },
+    {
+        "pattern": "compliance.*violation|Compliance.*violation|audit.*failure|Audit.*failure",
+        "description": "Compliance violation",
+        "severity": "medium"
+    },
+    {
+        "pattern": "forensic|Forensic|evidence|Evidence|chain.*of.*custody",
+        "description": "Forensic activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "incident.*response|Incident.*response|IR|ir|containment|Containment",
+        "description": "Incident response activity",
+        "severity": "medium"
+    },
+    {
+        "pattern": "backup.*failed|Backup.*failed|backup.*error|Backup.*error",
+        "description": "Backup failure",
+        "severity": "high"
+    },
+    {
+        "pattern": "log.*tampering|Log.*tampering|log.*deletion|Log.*deletion",
+        "description": "Log tampering",
+        "severity": "critical"
+    },
+    {
+        "pattern": "time.*sync.*failed|Time.*sync.*failed|NTP.*error|ntp.*error",
+        "description": "Time synchronization failure",
+        "severity": "medium"
+    },
+    {
+        "pattern": "certificate.*expired|Certificate.*expired|SSL.*expired|ssl.*expired",
+        "description": "Certificate expiration",
+        "severity": "medium"
+    },
+    {
+        "pattern": "TLS.*error|tls.*error|SSL.*error|ssl.*error|handshake.*failed",
+        "description": "TLS/SSL error",
+        "severity": "medium"
+    },
+    {
+        "pattern": "database.*error|Database.*error|DB.*error|db.*error|SQL.*error",
+        "description": "Database error",
+        "severity": "medium"
+    },
+    {
+        "pattern": "connection.*timeout|Connection.*timeout|timeout|Timeout",
+        "description": "Connection timeout",
+        "severity": "low"
+    },
+    {
+        "pattern": "resource.*limit|Resource.*limit|quota.*exceeded|Quota.*exceeded",
+        "description": "Resource limit exceeded",
+        "severity": "medium"
+    },
+    {
+        "pattern": "performance.*degradation|Performance.*degradation|slow.*response",
+        "description": "Performance degradation",
+        "severity": "medium"
+    },
+    {
+        "pattern": "high.*CPU|High.*CPU|CPU.*usage|cpu.*usage|high.*load",
+        "description": "High CPU usage",
+        "severity": "medium"
+    },
+    {
+        "pattern": "high.*memory|High.*memory|memory.*usage|swap.*usage",
+        "description": "High memory usage",
+        "severity": "medium"
+    },
+    {
+        "pattern": "disk.*I/O|Disk.*I/O|I/O.*wait|io.*wait",
+        "description": "Disk I/O issues",
+        "severity": "medium"
+    },
+    {
+        "pattern": "network.*latency|Network.*latency|high.*latency|ping.*timeout",
+        "description": "Network latency issues",
+        "severity": "medium"
+    },
+    {
+        "pattern": "spam|Spam|SPAM|unsolicited|Unsolicited|bulk.*email",
+        "description": "Spam activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "virus.*definition.*update|Virus.*definition.*update|signature.*update",
+        "description": "Antivirus signature update",
+        "severity": "low"
+    },
+    {
+        "pattern": "patch.*applied|Patch.*applied|update.*installed|Update.*installed",
+        "description": "Security patch applied",
+        "severity": "low"
+    },
+    {
+        "pattern": "vulnerability.*scan|Vulnerability.*scan|nessus|Nessus|openvas|OpenVAS",
+        "description": "Vulnerability scanning",
+        "severity": "low"
+    },
+    {
+        "pattern": "penetration.*test|Penetration.*test|pentest|Pentest|ethical.*hack",
+        "description": "Penetration testing",
+        "severity": "low"
+    },
+    {
+        "pattern": "security.*audit|Security.*audit|compliance.*check|Compliance.*check",
+        "description": "Security audit",
+        "severity": "low"
+    },
+    {
+        "pattern": "incident.*reported|Incident.*reported|security.*event|Security.*event",
+        "description": "Security incident report",
+        "severity": "medium"
+    },
+    {
+        "pattern": "threat.*intelligence|Threat.*intelligence|IOC|ioc|indicator.*of.*compromise",
+        "description": "Threat intelligence",
+        "severity": "medium"
+    },
+    {
+        "pattern": "false.*positive|False.*positive|benign|Benign|legitimate|Legitimate",
+        "description": "False positive identification",
+        "severity": "low"
+    },
+    {
+        "pattern": "alert.*fatigue|Alert.*fatigue|too.*many.*alerts|Too.*many.*alerts",
+        "description": "Alert fatigue",
+        "severity": "low"
+    },
+    {
+        "pattern": "monitoring.*disabled|Monitoring.*disabled|logging.*stopped|Logging.*stopped",
+        "description": "Monitoring/logging disabled",
+        "severity": "high"
+    },
+    {
+        "pattern": "suspicious.*file|Suspicious.*file|unknown.*binary|Unknown.*binary",
+        "description": "Suspicious file detection",
+        "severity": "high"
+    },
+    {
+        "pattern": "unusual.*login.*time|Unusual.*login.*time|off.*hours|Off.*hours",
+        "description": "Unusual login time",
+        "severity": "medium"
+    },
+    {
+        "pattern": "geographic.*anomaly|Geographic.*anomaly|unusual.*location|Unusual.*location",
+        "description": "Geographic anomaly",
+        "severity": "medium"
+    },
+    {
+        "pattern": "device.*fingerprint|Device.*fingerprint|browser.*fingerprint|Browser.*fingerprint",
+        "description": "Device/browser fingerprinting",
+        "severity": "low"
+    },
+    {
+        "pattern": "API.*abuse|api.*abuse|rate.*limit|Rate.*limit|throttling|Throttling",
+        "description": "API abuse",
+        "severity": "medium"
+    },
+    {
+        "pattern": "microservice.*failure|Microservice.*failure|container.*crash|Container.*crash",
+        "description": "Microservice/container failure",
+        "severity": "medium"
+    },
+    {
+        "pattern": "orchestration.*error|Orchestration.*error|kubernetes|Kubernetes|docker|Docker",
+        "description": "Container orchestration error",
+        "severity": "medium"
+    },
+    {
+        "pattern": "cloud.*access|Cloud.*access|AWS|aws|Azure|azure|GCP|gcp",
+        "description": "Cloud service access",
+        "severity": "low"
+    },
+    {
+        "pattern": "IAM.*error|iam.*error|identity.*error|Identity.*error",
+        "description": "Identity and Access Management error",
+        "severity": "medium"
+    },
+    {
+        "pattern": "federation.*error|Federation.*error|SAML|saml|OAuth|oauth",
+        "description": "Federation/authentication error",
+        "severity": "medium"
+    },
+    {
+        "pattern": "blockchain|Blockchain|smart.*contract|Smart.*contract|web3|Web3",
+        "description": "Blockchain/Web3 activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "IoT|iot|internet.*of.*things|Internet.*of.*things|smart.*device",
+        "description": "IoT device activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "industrial.*control|Industrial.*control|SCADA|scada|PLC|plc",
+        "description": "Industrial control system activity",
+        "severity": "medium"
+    },
+    {
+        "pattern": "medical.*device|Medical.*device|healthcare|Healthcare|HIPAA|hipaa",
+        "description": "Medical/healthcare system activity",
+        "severity": "medium"
+    },
+    {
+        "pattern": "financial.*transaction|Financial.*transaction|banking|Banking|PCI|pci",
+        "description": "Financial transaction",
+        "severity": "medium"
+    },
+    {
+        "pattern": "government|Government|classified|Classified|national.*security",
+        "description": "Government/security activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "educational|Educational|school|School|university|University",
+        "description": "Educational institution activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "research|Research|R&D|r&d|laboratory|Laboratory",
+        "description": "Research activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "telecommunication|Telecommunication|carrier|Carrier|ISP|isp",
+        "description": "Telecommunication activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "transportation|Transportation|logistics|Logistics|supply.*chain",
+        "description": "Transportation/logistics activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "energy|Energy|power.*grid|Power.*grid|utility|Utility",
+        "description": "Energy/utility activity",
+        "severity": "medium"
+    },
+    {
+        "pattern": "manufacturing|Manufacturing|production|Production|factory|Factory",
+        "description": "Manufacturing activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "retail|Retail|ecommerce|Ecommerce|shopping|Shopping",
+        "description": "Retail/ecommerce activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "entertainment|Entertainment|media|Media|streaming|Streaming",
+        "description": "Entertainment/media activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "gaming|Gaming|casino|Casino|gambling|Gambling",
+        "description": "Gaming/gambling activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "social.*media|Social.*media|facebook|Facebook|twitter|Twitter",
+        "description": "Social media activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "collaboration|Collaboration|office.*365|Office.*365|gsuite|Gsuite",
+        "description": "Collaboration tool activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "remote.*access|Remote.*access|VPN|vpn|remote.*desktop",
+        "description": "Remote access activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "BYOD|byod|bring.*your.*own.*device|Bring.*your.*own.*device",
+        "description": "BYOD activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "shadow.*IT|Shadow.*IT|unsanctioned|Unsactioned|rogue.*device",
+        "description": "Shadow IT activity",
+        "severity": "medium"
+    },
+    {
+        "pattern": "data.*loss|Data.*loss|data.*theft|Data.*theft|information.*theft",
+        "description": "Data loss/theft",
+        "severity": "critical"
+    },
+    {
+        "pattern": "intellectual.*property|Intellectual.*property|IP|ip|trade.*secret",
+        "description": "Intellectual property theft",
+        "severity": "high"
+    },
+    {
+        "pattern": "PII|pii|personal.*information|Personal.*information|privacy|Privacy",
+        "description": "PII/privacy violation",
+        "severity": "high"
+    },
+    {
+        "pattern": "GDPR|gdpr|ccpa|CCPA|privacy.*regulation|Privacy.*regulation",
+        "description": "Privacy regulation compliance",
+        "severity": "medium"
+    },
+    {
+        "pattern": "forensic.*analysis|Forensic.*analysis|digital.*forensic|Digital.*forensic",
+        "description": "Forensic analysis",
+        "severity": "low"
+    },
+    {
+        "pattern": "threat.*hunting|Threat.*hunting|proactive.*security|Proactive.*security",
+        "description": "Threat hunting activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "red.*team|Red.*team|blue.*team|Blue.*team|purple.*team|Purple.*team",
+        "description": "Red/Blue/Purple team activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "simulation|Simulation|drill|Drill|exercise|Exercise",
+        "description": "Security simulation/exercise",
+        "severity": "low"
+    },
+    {
+        "pattern": "business.*continuity|Business.*continuity|disaster.*recovery",
+        "description": "Business continuity activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "risk.*assessment|Risk.*assessment|vulnerability.*assessment",
+        "description": "Risk assessment",
+        "severity": "low"
+    },
+    {
+        "pattern": "policy.*violation|Policy.*violation|acceptable.*use|Acceptable.*use",
+        "description": "Policy violation",
+        "severity": "medium"
+    },
+    {
+        "pattern": "training|Training|awareness|Awareness|education|Education",
+        "description": "Security training/awareness",
+        "severity": "low"
+    },
+    {
+        "pattern": "certification|Certification|ISO.*27001|iso.*27001|SOC.*2",
+        "description": "Security certification",
+        "severity": "low"
+    },
+    {
+        "pattern": "audit.*trail|Audit.*trail|logging|Logging|monitoring|Monitoring",
+        "description": "Audit trail activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "SIEM|siem|splunk|Splunk|ELK|elk|logstash|Logstash",
+        "description": "SIEM/logging system activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "endpoint.*detection|Endpoint.*detection|EDR|edr|endpoint.*response",
+        "description": "Endpoint detection/response",
+        "severity": "medium"
+    },
+    {
+        "pattern": "network.*detection|Network.*detection|NDR|ndr|network.*response",
+        "description": "Network detection/response",
+        "severity": "medium"
+    },
+    {
+        "pattern": "SOAR|soar|security.*orchestration|Security.*orchestration",
+        "description": "SOAR activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "automation|Automation|playbook|Playbook|response.*automation",
+        "description": "Security automation",
+        "severity": "low"
+    },
+    {
+        "pattern": "artificial.*intelligence|Artificial.*intelligence|AI|ai|machine.*learning",
+        "description": "AI/ML security activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "zero.*trust|Zero.*trust|never.*trust|Never.*trust|always.*verify",
+        "description": "Zero trust activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "supply.*chain|Supply.*chain|third.*party|Third.*party|vendor|Vendor",
+        "description": "Supply chain security",
+        "severity": "medium"
+    },
+    {
+        "pattern": "open.*source|Open.*source|OSS|oss|community|Community",
+        "description": "Open source security",
+        "severity": "low"
+    },
+    {
+        "pattern": "DevSecOps|devsecops|DevOps|devops|CI/CD|ci/cd",
+        "description": "DevSecOps activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "cloud.*security|Cloud.*security|CASB|casb|CWPP|cwpp",
+        "description": "Cloud security",
+        "severity": "medium"
+    },
+    {
+        "pattern": "mobile.*security|Mobile.*security|MDM|mdm|MAM|mam",
+        "description": "Mobile device security",
+        "severity": "low"
+    },
+    {
+        "pattern": "API.*security|api.*security|OWASP|owasp|REST|rest",
+        "description": "API security",
+        "severity": "medium"
+    },
+    {
+        "pattern": "serverless|Serverless|function.*as.*service|Function.*as.*service",
+        "description": "Serverless security",
+        "severity": "low"
+    },
+    {
+        "pattern": "edge.*computing|Edge.*computing|fog.*computing|Fog.*computing",
+        "description": "Edge computing security",
+        "severity": "low"
+    },
+    {
+        "pattern": "quantum.*computing|Quantum.*computing|quantum.*safe|Quantum.*safe",
+        "description": "Quantum computing security",
+        "severity": "low"
+    },
+    {
+        "pattern": "biometric|Biometric|fingerprint|Fingerprint|facial|Facial",
+        "description": "Biometric security",
+        "severity": "low"
+    },
+    {
+        "pattern": "behavioral.*analysis|Behavioral.*analysis|UEBA|ueba",
+        "description": "User and Entity Behavioral Analysis",
+        "severity": "low"
+    },
+    {
+        "pattern": "digital.*twin|Digital.*twin|simulation|Simulation",
+        "description": "Digital twin security",
+        "severity": "low"
+    },
+    {
+        "pattern": "metaverse|Metaverse|virtual.*reality|Virtual.*reality",
+        "description": "Metaverse/VR security",
+        "severity": "low"
+    },
+    {
+        "pattern": "sustainability|Sustainability|green.*IT|Green.*IT|carbon.*footprint",
+        "description": "Sustainable/green IT security",
+        "severity": "low"
+    },
+    {
+        "pattern": "regulatory.*compliance|Regulatory.*compliance|NIST|nist|CISA|cisa",
+        "description": "Regulatory compliance",
+        "severity": "low"
+    },
+    {
+        "pattern": "cyber.*insurance|Cyber.*insurance|insurance.*claim|Insurance.*claim",
+        "description": "Cyber insurance activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "geopolitical|Geopolitical|international.*relations|International.*relations",
+        "description": "Geopolitical security",
+        "severity": "medium"
+    },
+    {
+        "pattern": "cyber.*warfare|Cyber.*warfare|state.*sponsored|State.*sponsored",
+        "description": "Cyber warfare activity",
+        "severity": "critical"
+    },
+    {
+        "pattern": "election.*security|Election.*security|voting.*system|Voting.*system",
+        "description": "Election security",
+        "severity": "high"
+    },
+    {
+        "pattern": "critical.*infrastructure|Critical.*infrastructure|CNI|cni",
+        "description": "Critical infrastructure security",
+        "severity": "high"
+    },
+    {
+        "pattern": "space|Space|satellite|Satellite|orbital|Orbital",
+        "description": "Space/satellite security",
+        "severity": "medium"
+    },
+    {
+        "pattern": "undersea|Undersea|cable|Cable|submarine|Submarine",
+        "description": "Undersea cable security",
+        "severity": "medium"
+    },
+    {
+        "pattern": "arctic|Arctic|antarctic|Antarctic|polar|Polar",
+        "description": "Polar region security",
+        "severity": "low"
+    },
+    {
+        "pattern": "climate.*change|Climate.*change|extreme.*weather|Extreme.*weather",
+        "description": "Climate change security impact",
+        "severity": "low"
+    },
+    {
+        "pattern": "pandemic|Pandemic|epidemic|Epidemic|health.*crisis",
+        "description": "Pandemic/health crisis security",
+        "severity": "medium"
+    },
+    {
+        "pattern": "economic|Economic|recession|Recession|financial.*crisis",
+        "description": "Economic crisis security impact",
+        "severity": "low"
+    },
+    {
+        "pattern": "social|Social|unrest|Unrest|protest|Protest",
+        "description": "Social unrest security impact",
+        "severity": "medium"
+    },
+    {
+        "pattern": "terrorism|Terrorism|extremism|Extremism|radicalization",
+        "description": "Terrorism/extremism security",
+        "severity": "critical"
+    },
+    {
+        "pattern": "espionage|Espionage|intelligence|Intelligence|spy|Spy",
+        "description": "Espionage activity",
+        "severity": "critical"
+    },
+    {
+        "pattern": "sabotage|Sabotage|disruption|Disruption|destruction|Destruction",
+        "description": "Sabotage activity",
+        "severity": "critical"
+    },
+    {
+        "pattern": "hoax|Hoax|false.*flag|False.*flag|deception|Deception",
+        "description": "Hoax/false flag activity",
+        "severity": "medium"
+    },
+    {
+        "pattern": "propaganda|Propaganda|disinformation|Disinformation|misinformation",
+        "description": "Propaganda/disinformation",
+        "severity": "medium"
+    },
+    {
+        "pattern": "influence.*operation|Influence.*operation|psychological|Psychological",
+        "description": "Influence operation",
+        "severity": "high"
+    },
+    {
+        "pattern": "hybrid.*threat|Hybrid.*threat|gray.*zone|Gray.*zone",
+        "description": "Hybrid threat",
+        "severity": "high"
+    },
+    {
+        "pattern": "asymmetric.*warfare|Asymmetric.*warfare|irregular.*warfare",
+        "description": "Asymmetric warfare",
+        "severity": "high"
+    },
+    {
+        "pattern": "proxy.*war|Proxy.*war|deniable.*operation|Deniable.*operation",
+        "description": "Proxy war activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "non.*state.*actor|Non.*state.*actor|criminal.*organization",
+        "description": "Non-state actor activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "organized.*crime|Organized.*crime|mafia|Mafia|cartel|Cartel",
+        "description": "Organized crime activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "hacktivism|Hacktivism|activism|Activism|political.*motivation",
+        "description": "Hacktivism activity",
+        "severity": "medium"
+    },
+    {
+        "pattern": "insider.*threat|Insider.*threat|trusted.*insider|Trusted.*insider",
+        "description": "Insider threat",
+        "severity": "high"
+    },
+    {
+        "pattern": "lone.*wolf|Lone.*wolf|individual.*actor|Individual.*actor",
+        "description": "Lone wolf actor",
+        "severity": "medium"
+    },
+    {
+        "pattern": "script.*kiddie|Script.*kiddie|novice|Novice|beginner|Beginner",
+        "description": "Script kiddie activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "advanced.*persistent.*threat|Advanced.*persistent.*threat|APT|apt",
+        "description": "Advanced Persistent Threat",
+        "severity": "critical"
+    },
+    {
+        "pattern": "nation.*state|Nation.*state|government.*sponsored|Government.*sponsored",
+        "description": "Nation-state actor",
+        "severity": "critical"
+    },
+    {
+        "pattern": "cyber.*mercenary|Cyber.*mercenary|hacker.*for.*hire|Hacker.*for.*hire",
+        "description": "Cyber mercenary activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "bug.*bounty|Bug.*bounty|vulnerability.*reward|Vulnerability.*reward",
+        "description": "Bug bounty activity",
+        "severity": "low"
+    },
+    {
+        "pattern": "responsible.*disclosure|Responsible.*disclosure|coordinated.*disclosure",
+        "description": "Responsible disclosure",
+        "severity": "low"
+    },
+    {
+        "pattern": "zero.*day.*market|Zero.*day.*market|exploit.*market|Exploit.*market",
+        "description": "Zero-day market activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "dark.*web|Dark.*web|onion|Onion|tor|Tor",
+        "description": "Dark web activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "cryptomarket|Cryptomarket|underground.*market|Underground.*market",
+        "description": "Cryptomarket activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "money.*laundering|Money.*laundering|financial.*crime|Financial.*crime",
+        "description": "Money laundering",
+        "severity": "high"
+    },
+    {
+        "pattern": "sanctions.*evasion|Sanctions.*evasion|OFAC|ofac|trade.*sanctions",
+        "description": "Sanctions evasion",
+        "severity": "high"
+    },
+    {
+        "pattern": "tax.*evasion|Tax.*evasion|offshore|Offshore|tax.*haven",
+        "description": "Tax evasion",
+        "severity": "medium"
+    },
+    {
+        "pattern": "fraud|Fraud|scam|Scam|deception|Deception",
+        "description": "Fraud/scam activity",
+        "severity": "high"
+    },
+    {
+        "pattern": "identity.*theft|Identity.*theft|impersonation|Impersonation",
+        "description": "Identity theft",
+        "severity": "high"
+    },
+    {
+        "pattern": "credential.*stuffing|Credential.*stuffing|password.*reuse",
+        "description": "Credential stuffing",
+        "severity": "medium"
+    },
+    {
+        "pattern": "business.*email.*compromise|Business.*email.*compromise|BEC|bec",
+        "description": "Business Email Compromise",
+        "severity": "high"
+    },
+    {
+        "pattern": "CEO.*fraud|Ceo.*fraud|executive.*fraud|Executive.*fraud",
+        "description": "CEO fraud",
+        "severity": "high"
+    },
+    {
+        "pattern": "sextortion|Sextortion|sexual.*extortion|Sexual.*extortion",
+        "description": "Sextortion",
+        "severity": "high"
+    },
+    {
+        "pattern": "ransomware.*as.*service|Ransomware.*as.*service|RaaS|raas",
+        "description": "Ransomware as a Service",
+        "severity": "critical"
+    },
+    {
+        "pattern": "double.*extortion|Double.*extortion|triple.*extortion|Triple.*extortion",
+        "description": "Double/Triple extortion",
+        "severity": "critical"
+    },
+    {
+        "pattern": "wiper|Wiper|destructive|Destructive|data.*destruction",
+        "description": "Data wiper malware",
+        "severity": "critical"
+    },
+    {
+        "pattern": "logic.*bomb|Logic.*bomb|time.*bomb|Time.*bomb",
+        "description": "Logic bomb",
+        "severity": "critical"
+    },
+    {
+        "pattern": "fileless.*malware|Fileless.*malware|memory.*resident|Memory.*resident",
+        "description": "Fileless malware",
+        "severity": "high"
+    },
+    {
+        "pattern": "living.*off.*the.*land|Living.*off.*the.*land|LotL|lotl",
+        "description": "Living off the Land",
+        "severity": "high"
+    },
+    {
+        "pattern": "supply.*chain.*attack|Supply.*chain.*attack|third.*party.*compromise",
+        "description": "Supply chain attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "waterholing|Waterholing|watering.*hole|Watering.*hole",
+        "description": "Watering hole attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "typosquatting|Typosquatting|domain.*squatting|Domain.*squatting",
+        "description": "Typosquatting",
+        "severity": "medium"
+    },
+    {
+        "pattern": "homoglyph|Homoglyph|unicode.*attack|Unicode.*attack",
+        "description": "Homoglyph attack",
+        "severity": "low"
+    },
+    {
+        "pattern": "adversarial.*AI|Adversarial.*AI|AI.*poisoning|Ai.*poisoning",
+        "description": "Adversarial AI attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "deepfake|Deepfake|AI.*generated|Ai.*generated|fake.*media",
+        "description": "Deepfake activity",
+        "severity": "medium"
+    },
+    {
+        "pattern": "voice.*cloning|Voice.*cloning|audio.*deepfake|Audio.*deepfake",
+        "description": "Voice cloning",
+        "severity": "medium"
+    },
+    {
+        "pattern": "synthetic.*identity|Synthetic.*identity|fake.*identity|Fake.*identity",
+        "description": "Synthetic identity fraud",
+        "severity": "medium"
+    },
+    {
+        "pattern": "digital.*forger|Digital.*forger|document.*forgery|Document.*forgery",
+        "description": "Digital forgery",
+        "severity": "medium"
+    },
+    {
+        "pattern": "steganography|Steganography|hidden.*data|Hidden.*data",
+        "description": "Steganography",
+        "severity": "medium"
+    },
+    {
+        "pattern": "side.*channel|Side.*channel|timing.*attack|Timing.*attack",
+        "description": "Side channel attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "fault.*injection|Fault.*injection|rowhammer|Rowhammer",
+        "description": "Fault injection attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "cold.*boot|Cold.*boot|memory.*forensic|Memory.*forensic",
+        "description": "Cold boot attack",
+        "severity": "medium"
+    },
+    {
+        "pattern": "electromagnetic|Electromagnetic|tempest|Tempest|emanation",
+        "description": "Electromagnetic attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "acoustic|Acoustic|sound|Sound|vibration|Vibration",
+        "description": "Acoustic attack",
+        "severity": "low"
+    },
+    {
+        "pattern": "optical|Optical|light|Light|laser|Laser",
+        "description": "Optical attack",
+        "severity": "low"
+    },
+    {
+        "pattern": "thermal|Thermal|heat|Heat|temperature|Temperature",
+        "description": "Thermal attack",
+        "severity": "low"
+    },
+    {
+        "pattern": "power.*analysis|Power.*analysis|differential.*power|Differential.*power",
+        "description": "Power analysis attack",
+        "severity": "medium"
+    },
+    {
+        "pattern": "cache.*attack|Cache.*attack|cache.*timing|Cache.*timing",
+        "description": "Cache attack",
+        "severity": "medium"
+    },
+    {
+        "pattern": "spectre|Spectre|meltdown|Meltdown|speculative|Speculative",
+        "description": "Speculative execution attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "microarchitectural|Microarchitectural|hardware.*vulnerability",
+        "description": "Microarchitectural attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "firmware|Firmware|BIOS|bios|UEFI|uefi",
+        "description": "Firmware attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "supply.*chain.*hardware|Supply.*chain.*hardware|hardware.*trojan",
+        "description": "Hardware supply chain attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "counterfeit|Counterfeit|fake.*hardware|Fake.*hardware",
+        "description": "Counterfeit hardware",
+        "severity": "high"
+    },
+    {
+        "pattern": "tamper|Tamper|physical.*attack|Physical.*attack",
+        "description": "Physical tampering",
+        "severity": "critical"
+    },
+    {
+        "pattern": "jailbreak|Jailbreak|root|Root|unlock|Unlock",
+        "description": "Device jailbreak/rooting",
+        "severity": "medium"
+    },
+    {
+        "pattern": "chip.*off|Chip.*off|chip.*extraction|Chip.*extraction",
+        "description": "Chip-off forensics",
+        "severity": "high"
+    },
+    {
+        "pattern": "glitch|Glitch|voltage.*glitch|Voltage.*glitch",
+        "description": "Voltage glitching",
+        "severity": "high"
+    },
+    {
+        "pattern": "electromagnetic.*pulse|Electromagnetic.*pulse|EMP|emp",
+        "description": "EMP attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "directed.*energy|Directed.*energy|microwave|Microwave",
+        "description": "Directed energy attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "cyber.*physical|Cyber.*physical|SCADA.*attack|scada.*attack",
+        "description": "Cyber-physical attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "industrial.*espionage|Industrial.*espionage|trade.*secret.*theft",
+        "description": "Industrial espionage",
+        "severity": "high"
+    },
+    {
+        "pattern": "sabotage.*physical|Sabotage.*physical|physical.*destruction",
+        "description": "Physical sabotage",
+        "severity": "critical"
+    },
+    {
+        "pattern": "insider.*physical|Insider.*physical|trusted.*physical.*access",
+        "description": "Physical insider threat",
+        "severity": "high"
+    },
+    {
+        "pattern": "dumpster.*diving|Dumpster.*diving|trash|Trash|garbage|Garbage",
+        "description": "Dumpster diving",
+        "severity": "low"
+    },
+    {
+        "pattern": "shoulder.*surfing|Shoulder.*surfing|visual.*hacking|Visual.*hacking",
+        "description": "Shoulder surfing",
+        "severity": "low"
+    },
+    {
+        "pattern": "tailgating|Tailgating|piggybacking|Piggybacking",
+        "description": "Tailgating/piggybacking",
+        "severity": "medium"
+    },
+    {
+        "pattern": "badge.*cloning|Badge.*cloning|access.*card.*cloning",
+        "description": "Badge cloning",
+        "severity": "high"
+    },
+    {
+        "pattern": "lockpicking|Lockpicking|bumping|Bumping|lock.*bypass",
+        "description": "Lock bypass",
+        "severity": "medium"
+    },
+    {
+        "pattern": "biometric.*bypass|Biometric.*bypass|fingerprint.*fake",
+        "description": "Biometric bypass",
+        "severity": "high"
+    },
+    {
+        "pattern": "social.*engineering.*physical|Social.*engineering.*physical",
+        "description": "Physical social engineering",
+        "severity": "medium"
+    },
+    {
+        "pattern": "eavesdropping|Eavesdropping|wiretapping|Wiretapping",
+        "description": "Eavesdropping",
+        "severity": "medium"
+    },
+    {
+        "pattern": "van.*eck|Van.*eck|tempest|Tempest|compromising.*emanations",
+        "description": "Van Eck phreaking",
+        "severity": "high"
+    },
+    {
+        "pattern": "keystroke.*timing|Keystroke.*timing|acoustic.*keystroke",
+        "description": "Acoustic keystroke detection",
+        "severity": "medium"
+    },
+    {
+        "pattern": "thermal.*imaging|Thermal.*imaging|heat.*signature",
+        "description": "Thermal imaging",
+        "severity": "low"
+    },
+    {
+        "pattern": "rfid.*cloning|RFID.*cloning|wireless.*card.*cloning",
+        "description": "RFID cloning",
+        "severity": "medium"
+    },
+    {
+        "pattern": "bluetooth.*attack|Bluetooth.*attack|blueborne|Blueborne",
+        "description": "Bluetooth attack",
+        "severity": "medium"
+    },
+    {
+        "pattern": "wifi.*attack|WiFi.*attack|wpa.*crack|WPA.*crack",
+        "description": "WiFi attack",
+        "severity": "medium"
+    },
+    {
+        "pattern": "zigbee|Zigbee|z-wave|Z-wave|iot.*protocol|IoT.*protocol",
+        "description": "IoT protocol attack",
+        "severity": "medium"
+    },
+    {
+        "pattern": "satellite.*attack|Satellite.*attack|gps.*spoofing|GPS.*spoofing",
+        "description": "Satellite/GPS attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "underwater|Underwater|sonar|Sonar|submarine.*communication",
+        "description": "Underwater communication attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "quantum.*attack|Quantum.*attack|quantum.*computer|Quantum.*computer",
+        "description": "Quantum attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "dna|DNA|genetic|Genetic|biometric.*genetic",
+        "description": "Genetic/biometric attack",
+        "severity": "high"
+    },
+    {
+        "pattern": "neurological|Neurological|brain.*computer|Brain.*computer",
+        "description": "Neurological interface attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "nanotechnology|Nanotechnology|nano|Nano|microscopic",
+        "description": "Nanotechnology attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "time.*travel|Time.*travel|chronological|Chronological",
+        "description": "Temporal attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "parallel.*universe|Parallel.*universe|multiverse|Multiverse",
+        "description": "Multiversal attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "simulation.*attack|Simulation.*attack|matrix|Matrix",
+        "description": "Simulation attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "consciousness|Consciousness|mind|MIND|psychic|Psychic",
+        "description": "Psychic attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "alien|Alien|extraterrestrial|Extraterrestrial|ufo|UFO",
+        "description": "Extraterrestrial attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "supernatural|Supernatural|paranormal|Paranormal|ghost|Ghost",
+        "description": "Supernatural attack",
+        "severity": "critical"
+    },
+    {
+        "pattern": "divine|Divine|god|God|religious|Religious",
+        "description": "Divine intervention",
+        "severity": "critical"
+    },
+    {
+        "pattern": "end.*of.*world|End.*of.*world|apocalypse|Apocalypse",
+        "description": "Apocalyptic event",
+        "severity": "critical"
+    },
+    {
+        "pattern": "time.*paradox|Time.*paradox|causality|Causality",
+        "description": "Causality violation",
+        "severity": "critical"
+    },
+    {
+        "pattern": "reality.*glitch|Reality.*glitch|fabric.*of.*reality",
+        "description": "Reality fabric breach",
+        "severity": "critical"
+    },
+    {
+        "pattern": "dimensional|Dimensional|alternate.*reality|Alternate.*reality",
+        "description": "Dimensional breach",
+        "severity": "critical"
+    },
+    {
+        "pattern": "cosmic|Cosmic|universal|Universal|galactic|Galactic",
+        "description": "Cosmic threat",
+        "severity": "critical"
+    },
+    {
+        "pattern": "infinite|Infinite|eternal|Eternal|immortal|Immortal",
+        "description": "Infinite threat",
+        "severity": "critical"
+    },
+    {
+        "pattern": "ultimate|Ultimate|final|Final|absolute|Absolute",
+        "description": "Ultimate threat",
         "severity": "critical"
     }
 ]
